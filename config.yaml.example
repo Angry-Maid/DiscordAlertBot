@@ -1,0 +1,15 @@
+# Substitude `sometoken` for your bot token and rename file with removing `.example` from it.
+# This bot will need to have all priveledged gateway intents enabled
+# (i.e. `Presence Intent`, `Server Members Intent` and `Message Content Intent`)
+BOT_TOKEN: sometoken
+prefix: ".p " # keep as string with space at the end if you want your prefix separate from commands
+commands:
+  - debug
+  - alert
+  - generate_report
+excluded_roles: # for command `alert`, config are passed down to commands so it can be reused by them
+  - "@everyone" # special case because in Discord API it'll
+                # always have the name with @ sign at the beginning
+                # this isn't the case for other roles.
+  - "some role"
+  - "BotRole" # bot role name, usually will be the app name in developer portal.
