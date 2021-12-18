@@ -1,6 +1,4 @@
-import json
 from importlib import import_module
-from typing import List
 
 import hikari
 import yaml
