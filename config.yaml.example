@@ -2,6 +2,10 @@
 # This bot will need to have all priveledged gateway intents enabled
 # (i.e. `Presence Intent`, `Server Members Intent` and `Message Content Intent`)
 BOT_TOKEN: sometoken
+PG_USER:
+PG_PASSWORD:
+PG_URL:
+PG_DB:
 prefix: ".p " # keep as string with space at the end if you want your prefix separate from commands
 commands:
   - debug

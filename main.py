@@ -3,6 +3,8 @@ from importlib import import_module
 import hikari
 import yaml
 
+from models import Record, session_scope
+
 
 with open('config.yaml') as cfile:
     config = yaml.load(cfile, Loader=yaml.CLoader)
@@ -26,9 +28,15 @@ async def ping(event: hikari.GuildMessageCreateEvent) -> None:
     if event.content.startswith(config['prefix']):
         command, *args = event.content.strip(config['prefix']).split(" ")
         if command in commands:
+            with session_scope() as s:
+                record = Record(
+                    username=event.message.author.username,
+                    command=command,
+                    message=' '.join(args)
+                )
+                s.add(record)
+                s.commit()
             await commands[command](event, command, config, *args)
-        if command == "ping":
-            await event.message.respond("pong")
 
 
 if __name__ == "__main__":
