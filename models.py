@@ -53,6 +53,7 @@ engine = create_engine('postgresql+psycopg2://{}:{}@{}/{}'.format(
     config['PG_USER'], config['PG_PASSWORD'],
     config['PG_URL'], config['PG_DB']
 ))
+# engine = create_engine('sqlite://', echo=True) # For debug purposes.
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
